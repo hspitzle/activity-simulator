@@ -12,7 +12,7 @@ class Simulator {
 
   run(): void {
     const selectedActivities = this.selectActivities();
-    console.log('Selected Activities::>', selectedActivities);
+    console.log('Selected Activities::>', selectedActivities.map(a => a.constructor.name));
 
     const activityLogs = this.runActivities(selectedActivities);
     console.log('Activity Logs::>', activityLogs);

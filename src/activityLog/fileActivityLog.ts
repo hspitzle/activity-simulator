@@ -1,14 +1,8 @@
 import ActivityLog from './activityLog';
 
-enum Action {
-  CREATED = 'CREATED',
-  UPDATED = 'UPDATED',
-  DELETED = 'DELETED',
-}
-
 interface FileActivityLog extends ActivityLog {
   filePath: string;
-  activityDescriptor: Action;
+  activityDescriptor: string;
 }
 
 export default FileActivityLog;
