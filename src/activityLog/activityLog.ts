@@ -1,6 +1,6 @@
 
 interface ActivityLog {
-  timestamp: string;
+  activityTime: string;
 }
 
 export default ActivityLog;
