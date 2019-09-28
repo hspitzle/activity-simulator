@@ -1,0 +1,7 @@
+--require ts-node/register/transpile-only
+--option value test/**/*-test.ts
+--recursive
+--retries 0
+--sort
+--timeout 5000
+--exit
