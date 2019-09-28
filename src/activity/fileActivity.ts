@@ -2,7 +2,7 @@ import Activity from './activity';
 import { FileActivityLog } from '../activityLog';
 
 class FileActivity extends Activity {
-  exec(): FileActivityLog[] {
+  exec(opts: object): FileActivityLog[] {
     throw new Error("Method not implemented.");
   }
 }
