@@ -1,5 +1,7 @@
 import JsonLogFormatter from './jsonLogFormatter';
+import LogFormatter from './logFormatter';
 
 export {
-  JsonLogFormatter
+  JsonLogFormatter,
+  LogFormatter,
 };

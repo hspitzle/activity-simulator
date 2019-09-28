@@ -1,7 +1,11 @@
 import { ActivityLog } from '../activityLog';
+import SimulatorOptions from '../simulatorOptions';
 
 abstract class Activity {
-  abstract exec(opts: object): ActivityLog[];
+  constructor(protected opts: SimulatorOptions) {
+  }
+
+  abstract exec(): ActivityLog[];
 }
 
 export default Activity;
