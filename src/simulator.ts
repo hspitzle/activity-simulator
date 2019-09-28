@@ -1,25 +1,19 @@
-import * as program from 'commander';
+import * as Activities from './activity';
+import _ from 'lodash';
 
-function commaSeparatedList(value: string, dummyPrevious: any) {
-  return value.split(',');
+class Simulator {
+  run(opts: object): void {
+    const selectedActivities = this.selectActivities(opts);
+    console.log('Activities::>', selectedActivities);
+
+    selectedActivities.forEach((activityName: string) => {
+     console.log(activityName);
+    });
+  }
+
+  private selectActivities(opts: object): string[] {
+    return Object.keys(Activities);
+  }
 }
 
-program
-  .option('-e, --executablePath <string>', 'path to the executable that should be run')
-  .option('-o, --executableOpts <items>', 'options for the executable that should be run', commaSeparatedList);
-
-program.parse(process.argv);
-
-console.log('executablePath:', program.executablePath);
-console.log('executableOpts:', program.executableOpts);
-
-/**
- * example:
- *
- * input:
- * npm run exec -- -e ../foo.sh -o hello,world
- *
- * output:
- * executablePath: ../foo.sh
- * executableOpts: [ 'hello', 'world' ]
- */
+export default Simulator;

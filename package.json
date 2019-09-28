@@ -2,18 +2,19 @@
   "name": "activity-simulator",
   "version": "1.0.0",
   "description": "a framework that allows",
-  "main": "build/simulator.js",
   "scripts": {
     "test": "test",
     "build": "tsc",
-    "exec": "npm run build && node build/simulator.js"
+    "exec": "npm run build && node build/index.js"
   },
   "author": "Hayden Spitzley",
   "dependencies": {
-    "commander": "^3.0.2"
+    "commander": "^3.0.2",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",
+    "@types/lodash": "^4.14.141",
     "@types/node": "^12.7.8",
     "ts-node": "^8.4.1"
   }
