@@ -1,7 +1,6 @@
 import { JsonLogFormatter } from '../../src/logFormatter';
 import { ActivityLog } from '../../src/activityLog';
 import { expect } from 'chai';
-import moment from 'moment';
 
 describe('JsonLogFormatter', () => {
   let formatter: JsonLogFormatter;
@@ -27,7 +26,7 @@ describe('JsonLogFormatter', () => {
     ];
   });
 
-  describe('#format', function() {
+  describe('#format', () => {
     it('should return -1 when the value is not present', () => {
       const formatted = formatter.format(logs);
       expect(formatted).to.equal(

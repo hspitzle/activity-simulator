@@ -1,5 +1,6 @@
 import program from 'commander';
 import Simulator from './simulator';
+import SimulatorOptions from './simulatorOptions';
 
 function commaSeparatedList(value: string, dummyPrevious: any) {
   return value.split(',');
@@ -11,7 +12,7 @@ program
 
 program.parse(process.argv);
 
-const options = {
+const options: SimulatorOptions = {
   executablePath: program.executablePath,
   executableOpts: program.executableOpts,
 }
@@ -27,4 +28,4 @@ console.log(options);
  * { executablePath: './foo.sh', executableOpts: [ 'foo', 'bar' ] }
  */
 
-new Simulator().run(options);
+new Simulator(options).run();

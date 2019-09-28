@@ -1,10 +1,10 @@
 
 interface ActivityLog {
-  activityTime: string;
+  activityTime: number;
   initiatedBy: string;
   processName: string;
-  processCommandLine: string;
-  processId: string;
+  processCommand: string;
+  processId: number;
 }
 
 export default ActivityLog;

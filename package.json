@@ -5,6 +5,7 @@
   "scripts": {
     "test": "mocha --opts ./test/mocha.opts",
     "build": "tsc",
+    "clean": "rm -r build/",
     "exec": "npm run build && node build/index.js"
   },
   "author": "Hayden Spitzley",
