@@ -1,8 +1,5 @@
-// import { ActivityLog } from './activity-log';
 import * as program from 'commander';
-import * as fs from 'fs';
 
-// const log: ActivityLog = { timestamp: 'test' };
 function commaSeparatedList(value: string, dummyPrevious: any) {
   return value.split(',');
 }
@@ -13,7 +10,16 @@ program
 
 program.parse(process.argv);
 
-console.log(program);
-console.log(program.executableOpts);
+console.log('executablePath:', program.executablePath);
+console.log('executableOpts:', program.executableOpts);
 
-// fs.writeFileSync('foo.txt', 'testing');
+/**
+ * example:
+ *
+ * input:
+ * npm run exec -- -e ../foo.sh -o hello,world
+ *
+ * output:
+ * executablePath: ../foo.sh
+ * executableOpts: [ 'hello', 'world' ]
+ */
