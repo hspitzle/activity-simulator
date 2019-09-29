@@ -5,7 +5,6 @@ import Bluebird from 'bluebird';
 import { spawnSync } from 'child_process';
 import fs from 'fs';
 import _ from 'lodash';
-import os from 'os';
 
 class ProcessActivity extends Activity {
   async exec(): Bluebird<ProcessActivityLog[]> {

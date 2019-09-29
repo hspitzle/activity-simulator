@@ -4,7 +4,6 @@ import createActivityLog from '../util/createActivityLog';
 import HttpServer from '../util/httpServer';
 import axios from 'axios';
 import Bluebird from 'bluebird';
-import os from 'os';
 
 class NetworkActivity extends Activity {
   async exec(): Bluebird<NetworkActivityLog[]> {
@@ -24,6 +23,7 @@ class NetworkActivity extends Activity {
     return [log];
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async transmitData(): Bluebird<any> {
     const server = new HttpServer();
     server.start();
