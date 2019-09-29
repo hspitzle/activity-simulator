@@ -4,17 +4,18 @@ import { ActivityLog } from './activityLog';
 import { JsonLogFormatter } from './logFormatter';
 import LogSerializer from './logSerializer';
 import SimulatorOptions from './simulatorOptions';
+import Bluebird from 'bluebird';
 import _ from 'lodash';
 
 class Simulator {
   constructor(private opts: SimulatorOptions) {
   }
 
-  run(): void {
+  async run(): Bluebird<void> {
     const selectedActivities = this.selectActivities();
     console.log('Selected Activities::>', selectedActivities.map(a => a.constructor.name));
 
-    const activityLogs = this.runActivities(selectedActivities);
+    const activityLogs = await this.runActivities(selectedActivities);
     console.log('Activity Logs::>', activityLogs);
 
     const logFile = this.serializeActivityLogs(activityLogs);
@@ -26,8 +27,8 @@ class Simulator {
     return Object.values(Activities).map(activity => new activity(this.opts));
   }
 
-  private runActivities(selectedActivities: Activity[]): ActivityLog[] {
-    const logs = selectedActivities.map(activity => activity.exec());
+  private async runActivities(selectedActivities: Activity[]): Bluebird<ActivityLog[]> {
+    const logs = await Bluebird.map(selectedActivities, activity => activity.exec());
     return _.flatten(logs);
   }
 
