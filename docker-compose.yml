@@ -2,5 +2,5 @@ version: '3'
 services:
   simulator:
     build: .
-    volumes:
-      - .:/home/app/
+    # volumes:
+      # - .:/home/app/
