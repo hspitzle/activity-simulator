@@ -1,11 +1,12 @@
 import Activity from './activity';
 import { FileActivityLog } from '../activityLog';
+import Bluebird from 'bluebird';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
 class FileActivity extends Activity {
-  exec(): FileActivityLog[] {
+  async exec(): Bluebird<FileActivityLog[]> {
     const dirName = `tmp-${Date.now()}`;
     const filePath = path.resolve(path.join(dirName, 'simulated-test-file.txt'));
     fs.mkdirSync(dirName);
@@ -39,7 +40,7 @@ class FileActivity extends Activity {
     return {
       activityTime: Date.now(), // TODO: could get this from fs.statSync(filePath) but that breaks when deleting because file no longer exists to get stats
       initiatedBy: os.userInfo().username,
-      processId: process.pid,
+      processId: process.pid, // TODO: this produces a pid for this process running this code, is that expected?
       processCommand: '', // TODO: what is expected here?
       processName: '', // TODO: what is expected here?
       filePath,

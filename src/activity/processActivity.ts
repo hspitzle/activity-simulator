@@ -1,14 +1,15 @@
 import Activity from './activity';
 import { ProcessActivityLog } from '../activityLog';
 import { spawnSync } from 'child_process';
-import _ from 'lodash';
+import Bluebird from 'bluebird';
 import fs from 'fs';
+import _ from 'lodash';
 import os from 'os';
 
 class ProcessActivity extends Activity {
-  exec(): ProcessActivityLog[] {
+  async exec(): Bluebird<ProcessActivityLog[]> {
     if (!fs.existsSync(this.opts.executablePath)) {
-      console.log('ProcessActivity: Could no invoke specified process');
+      console.log('ProcessActivity: Could not invoke specified process');
       return [];
     }
     const spawnResult = spawnSync(this.opts.executablePath, this.opts.executableOpts);
