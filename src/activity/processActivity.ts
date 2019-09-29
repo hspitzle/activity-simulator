@@ -1,7 +1,8 @@
 import Activity from './activity';
 import { ProcessActivityLog } from '../activityLog';
-import { spawnSync } from 'child_process';
+import createActivityLog from '../util/createActivityLog';
 import Bluebird from 'bluebird';
+import { spawnSync } from 'child_process';
 import fs from 'fs';
 import _ from 'lodash';
 import os from 'os';
@@ -13,13 +14,11 @@ class ProcessActivity extends Activity {
       return [];
     }
     const spawnResult = spawnSync(this.opts.executablePath, this.opts.executableOpts);
-    const log: ProcessActivityLog = {
-      activityTime: Date.now(),
-      initiatedBy: os.userInfo().username,
+    const log: ProcessActivityLog = createActivityLog({
       processId: spawnResult.pid,
       processCommand: this.getProcessCommand(), // TODO: is this what is expected here?
       processName: this.opts.executablePath, // TODO: is this what is expected here?
-    }
+    });
     return [log];
   }
 

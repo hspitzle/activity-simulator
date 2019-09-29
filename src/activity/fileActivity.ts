@@ -1,5 +1,6 @@
 import Activity from './activity';
 import { FileActivityLog } from '../activityLog';
+import createActivityLog from '../util/createActivityLog'
 import Bluebird from 'bluebird';
 import fs from 'fs';
 import os from 'os';
@@ -37,15 +38,14 @@ class FileActivity extends Activity {
   }
 
   private createActivityLog(activityDescriptor: 'CREATED' | 'UPDATED' | 'DELETED', filePath: string): FileActivityLog {
-    return {
-      activityTime: Date.now(), // TODO: could get this from fs.statSync(filePath) but that breaks when deleting because file no longer exists to get stats
-      initiatedBy: os.userInfo().username,
-      processId: process.pid, // TODO: this produces a pid for this process running this code, is that expected?
-      processCommand: '', // TODO: what is expected here?
-      processName: '', // TODO: what is expected here?
-      filePath,
-      activityDescriptor,
-    };
+    // TODO: could get activityTime from fs.statSync(filePath) but that breaks when deleting because file no longer exists to get stats
+    return Object.assign(
+      createActivityLog(),
+      {
+        filePath,
+        activityDescriptor,
+      }
+    );
   }
 }
 

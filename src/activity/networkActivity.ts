@@ -1,5 +1,6 @@
 import Activity from './activity';
 import { NetworkActivityLog } from '../activityLog';
+import createActivityLog from '../util/createActivityLog';
 import HttpServer from '../util/httpServer';
 import axios from 'axios';
 import Bluebird from 'bluebird';
@@ -9,19 +10,17 @@ class NetworkActivity extends Activity {
   async exec(): Bluebird<NetworkActivityLog[]> {
     const res = await this.transmitData();
 
-    const log: NetworkActivityLog = {
-      activityTime: Date.now(),
-      initiatedBy: os.userInfo().username,
-      processId: process.pid, // TODO: this produces a pid for this process running this code, is that expected?
-      processCommand: '', // TODO: what is expected here?
-      processName: '', // TODO: what is expected here?
-      destinationAddress: '', // TODO
-      destinationPort: 0, // TODO
-      sourceAddress: '', // TODO
-      sourcePort: 0, // TODO
-      contentLength: res.config.headers['Content-Length'], // TODO
-      protocol: res.request.agent.protocol,
-    }
+    const log: NetworkActivityLog = Object.assign(
+      createActivityLog(),
+      {
+        destinationAddress: '', // TODO
+        destinationPort: 0, // TODO
+        sourceAddress: '', // TODO
+        sourcePort: 0, // TODO
+        contentLength: res.config.headers['Content-Length'], // TODO
+        protocol: res.request.agent.protocol,
+      }
+    );
     return [log];
   }
 
