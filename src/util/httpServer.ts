@@ -14,13 +14,13 @@ class HttpServer {
     });
   }
 
-  start() {
+  start(): void {
     if (!this.server) {
       this.server = this.app.listen(this.port, () => console.log(`Example server listening on port ${this.port}!`));
     }
   }
 
-  stop() {
+  stop(): void {
     if (this.server) {
       console.log('Shutting down example server...');
       this.server.close();

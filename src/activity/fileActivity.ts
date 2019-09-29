@@ -3,7 +3,6 @@ import { FileActivityLog } from '../activityLog';
 import createActivityLog from '../util/createActivityLog'
 import Bluebird from 'bluebird';
 import fs from 'fs';
-import os from 'os';
 import path from 'path';
 
 class FileActivity extends Activity {

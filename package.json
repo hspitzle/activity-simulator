@@ -4,9 +4,10 @@
   "description": "a framework that allows",
   "scripts": {
     "test": "mocha --opts ./test/mocha.opts",
-    "build": "tsc",
+    "build": "tsc && npm run lint",
     "clean": "rm -r build/",
-    "exec": "npm run build && node build/index.js"
+    "exec": "npm run build && node build/index.js",
+    "lint": "eslint src/**/*.ts"
   },
   "author": "Hayden Spitzley",
   "dependencies": {
@@ -26,7 +27,10 @@
     "@types/mocha": "^5.2.7",
     "@types/moment": "^2.13.0",
     "@types/node": "^12.7.8",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
     "chai": "^4.2.0",
+    "eslint": "^6.4.0",
     "mocha": "^6.2.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
