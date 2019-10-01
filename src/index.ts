@@ -22,10 +22,13 @@ console.log(options);
  * example:
  *
  * input:
- * npm run exec -- -e ../foo.sh -o hello,world
+ * npm run exec -- -e example/executable.sh -o hello,world
  *
  * output:
- * { executablePath: './foo.sh', executableOpts: [ 'foo', 'bar' ] }
+ * {
+ *   executablePath: 'example/executable.sh',
+ *   executableOpts: [ 'hello', 'world' ]
+ * }
  */
 
 new Simulator(options).run();
