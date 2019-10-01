@@ -28,7 +28,7 @@ class Simulator {
   }
 
   private async runActivities(selectedActivities: Activity[]): Bluebird<ActivityLog[]> {
-    const logs = await Bluebird.map(selectedActivities, activity => activity.exec());
+    const logs = await Bluebird.mapSeries(selectedActivities, activity => activity.exec());
     return _.flatten(logs);
   }
 

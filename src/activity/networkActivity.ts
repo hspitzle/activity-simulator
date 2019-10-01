@@ -12,11 +12,11 @@ class NetworkActivity extends Activity {
     const log: NetworkActivityLog = Object.assign(
       createActivityLog(),
       {
-        destinationAddress: '', // TODO
-        destinationPort: 0, // TODO
+        destinationAddress: '127.0.0.1',
+        destinationPort: 3000,
         sourceAddress: '', // TODO
         sourcePort: 0, // TODO
-        contentLength: res.config.headers['Content-Length'], // TODO
+        contentLength: res.config.headers['Content-Length'],
         protocol: res.request.agent.protocol,
       }
     );
