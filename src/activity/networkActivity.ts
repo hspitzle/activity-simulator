@@ -14,8 +14,8 @@ class NetworkActivity extends Activity {
       {
         destinationAddress: '127.0.0.1',
         destinationPort: 3000,
-        sourceAddress: '', // TODO
-        sourcePort: 0, // TODO
+        sourceAddress: '', // TODO: get clarification
+        sourcePort: 0, // TODO: get clarification
         contentLength: res.config.headers['Content-Length'],
         protocol: res.request.agent.protocol,
       }
