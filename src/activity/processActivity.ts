@@ -15,16 +15,16 @@ class ProcessActivity extends Activity {
     const spawnResult = spawnSync(this.opts.executablePath, this.opts.executableOpts);
     const log: ProcessActivityLog = createActivityLog({
       processId: spawnResult.pid,
-      processCommand: this.getProcessCommand(), // TODO: is this what is expected here?
-      processName: this.opts.executablePath, // TODO: is this what is expected here?
+      processCommand: this.getProcessCommand(),
+      processName: this.opts.executablePath,
     });
     return [log];
   }
 
   private getProcessCommand(): string {
     // processCommand could also be _.get(spawnResult, 'args').join(' '),
-    // this would be a little simpler, but though it appears to be in the result every time,
-    // it is not explicitly stated that it will be there according to the child_process docs
+    // this would be a little simpler but it is not explicitly stated that it will be there
+    // according to the child_process docs, although it appears to be in the result every time
 
     return _.flatten([this.opts.executablePath, this.opts.executableOpts]).join(' ');
   }

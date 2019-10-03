@@ -37,7 +37,8 @@ class FileActivity extends Activity {
   }
 
   private createActivityLog(activityDescriptor: 'CREATED' | 'UPDATED' | 'DELETED', filePath: string): FileActivityLog {
-    // TODO: could get activityTime from fs.statSync(filePath) but that breaks when deleting because file no longer exists to get stats
+    // for these activity logs it might be more precise get activityTime from fs.statSync(filePath)
+    // but that breaks when deleting because file no longer exists to get stats
     return Object.assign(
       createActivityLog(),
       {
