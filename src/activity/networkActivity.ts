@@ -1,46 +1,39 @@
 import Activity from './activity';
 import { NetworkActivityLog } from '../activityLog';
 import createActivityLog from '../util/createActivityLog';
-import HttpServer from '../util/httpServer';
-import axios from 'axios';
 import Bluebird from 'bluebird';
+import net from 'net';
 
 class NetworkActivity extends Activity {
   async exec(): Bluebird<NetworkActivityLog[]> {
-    const res = await this.transmitData();
+    const socket = await this.createSocketConnetion(443, 'www.google.com');
+    const content = 'hello, world';
+    socket.write(content);
 
     const log: NetworkActivityLog = Object.assign(
       createActivityLog(),
       {
-        destinationAddress: '127.0.0.1',
-        destinationPort: 3000,
-        sourceAddress: '', // TODO: get clarification
-        sourcePort: 0, // TODO: get clarification
-        contentLength: res.config.headers['Content-Length'],
-        protocol: res.request.agent.protocol,
+        destinationAddress: socket.remoteAddress as string,
+        destinationPort: socket.remotePort as number,
+        sourceAddress: socket.localAddress,
+        sourcePort: socket.localPort,
+        contentLength: content.length,
+        protocol: 'TCP',
       }
     );
     return [log];
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async transmitData(): Bluebird<any> {
-    const server = new HttpServer();
-    server.start();
-
-    const res = await axios({
-      method: 'post',
-      url: 'http://localhost:3000/test-network-activity',
-      headers: {
-        'content-type': 'application/json',
-      },
-      data: {
-        test: 'data transmission'
-      }
+  private createSocketConnetion(port: number, host: string): Bluebird<net.Socket> {
+    return new Bluebird((resolve): void => {
+      const socket = new net.Socket();
+      socket.on('data', () => socket.destroy());
+      socket.on('close', () => console.log('Socket connection closed'));
+      socket.connect(port, host, () => {
+        console.log('Socket connected');
+        return resolve(socket);
+      });
     });
-
-    server.stop();
-    return res;
   }
 }
 
