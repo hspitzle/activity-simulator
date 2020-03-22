@@ -1,0 +1,34 @@
+{
+  "name": "activity-simulator",
+  "version": "1.0.0",
+  "description": "a framework that allows",
+  "scripts": {
+    "test": "mocha --opts ./test/mocha.opts",
+    "build": "tsc && npm run lint",
+    "clean": "rm -r build/",
+    "exec": "npm run build && node build/index.js",
+    "lint": "eslint src/**/*.ts"
+  },
+  "author": "Hayden Spitzley",
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "commander": "^3.0.2",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.27",
+    "@types/chai": "^4.2.3",
+    "@types/commander": "^2.12.2",
+    "@types/lodash": "^4.14.141",
+    "@types/mocha": "^5.2.7",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^12.7.8",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "chai": "^4.2.0",
+    "eslint": "^6.4.0",
+    "mocha": "^6.2.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
