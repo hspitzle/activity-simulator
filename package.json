@@ -13,7 +13,7 @@
   "dependencies": {
     "bluebird": "^3.5.5",
     "commander": "^3.0.2",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.27",
